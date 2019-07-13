@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t selimdincer/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true selimdincer/react-test npm test
+
+ after_success:
+  -  docker build -t selimdincer/multi-client ./client
+  -  docker build -t selimdincer/multi-nginx ./nginx
+  -  docker build -t selimdincer/multi-server ./server
+  -  docker build -t selimdincer/multi-worker ./worker
+# Log in to Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password_stdin
+# Take those images and push them to the Docker Hub
+  - docker push selimdincer/multi-client
+  - docker push selimdincer/multi-nignx
+  - docker push selimdincer/multi-server
+  - docker push selimdincer/multi-worker     
+ 
