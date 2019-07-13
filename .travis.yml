@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run -e CI=true selimdincer/react-test npm test
 
- after_success:
+after_success:
   -  docker build -t selimdincer/multi-client ./client
   -  docker build -t selimdincer/multi-nginx ./nginx
   -  docker build -t selimdincer/multi-server ./server
@@ -19,5 +19,4 @@ script:
   - docker push selimdincer/multi-client
   - docker push selimdincer/multi-nignx
   - docker push selimdincer/multi-server
-  - docker push selimdincer/multi-worker     
- 
+  - docker push selimdincer/multi-worker
