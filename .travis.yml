@@ -16,7 +16,7 @@ after_success:
 # Log in to Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to the Docker Hub
-  - docker push selimhandincer/multi-client
-  - docker push selimhandincer/multi-nginx
+  - docker push selimdincer/multi-client
+  - docker push selimdincer/multi-nginx
   - docker push selimdincer/multi-server
   - docker push selimdincer/multi-worker
