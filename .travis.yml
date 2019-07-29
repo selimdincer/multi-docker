@@ -22,7 +22,7 @@ after_success:
   - docker push selimdincer/multi-worker
 
 deploy:
-  provide: elasticbeanstalk
+  provider: elasticbeanstalk
   region: us-west-2
   app: multi-docker
   env: MultiDocker-env
