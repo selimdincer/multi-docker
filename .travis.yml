@@ -20,3 +20,19 @@ after_success:
   - docker push selimdincer/multi-nginx
   - docker push selimdincer/multi-server
   - docker push selimdincer/multi-worker
+
+deploy:
+  provide: elasticbeanstalk
+  region: us-west-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-2-871834746074
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: 
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY  
+
+
